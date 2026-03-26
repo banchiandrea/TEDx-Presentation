@@ -2,35 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Presentation</title>
-
   <style>
-    html, body {
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: black; /* prevents white flash */
     }
 
-    iframe {
-      position: fixed;
-      top: 0;
-      left: 0;
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .prezi-wrap {
+      position: relative;
       width: 100vw;
-      height: 100vh;
+      /* 16:9 but capped so the bottom nav bar never gets cut off.
+         On tall/narrow mobile screens this leaves breathing room. */
+      height: min(56.25vw, 85vh);
+    }
+
+    .prezi-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
       border: none;
     }
   </style>
 </head>
-
 <body>
-  <iframe 
-    src="https://prezi.com/p/embed/UuMupJnldJYBJrRKzkD7/"
-    allow="autoplay; fullscreen"
-    allowfullscreen>
-  </iframe>
+  <div class="prezi-wrap">
+    <iframe
+      src="https://prezi.com/p/embed/UuMupJnldJYBJrRKzkD7/"
+      id="iframe_container"
+      frameborder="0"
+      webkitallowfullscreen
+      mozallowfullscreen
+      allowfullscreen
+      allow="autoplay; fullscreen"
+    ></iframe>
+  </div>
 </body>
 </html>
